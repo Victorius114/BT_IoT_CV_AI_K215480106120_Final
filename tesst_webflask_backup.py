@@ -131,7 +131,7 @@ def detect_face():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index_gv.html')
 
 
 @app.route('/video_feed')

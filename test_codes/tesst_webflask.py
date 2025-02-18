@@ -70,6 +70,38 @@ def save_time():
         # In ra lỗi chi tiết
         return jsonify({'message': f'Lỗi khi lưu thời gian: {str(e)}'}), 500
 
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    user_id = data.get('id')
+    password = data.get('pass')
+
+    # Kết nối đến cơ sở dữ liệu
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    # Truy vấn cơ sở dữ liệu để tìm người dùng với user_id và mật khẩu
+    query = "SELECT loai FROM Login WHERE id = ? AND pass = ?"
+    cursor.execute(query, (user_id, password))
+    user = cursor.fetchone()
+
+    if user:
+        # Trả về loai và thông tin chuyển hướng
+        loai = user[0]
+        path = '/index'
+        if loai == 'gv': path = '/index_gv'
+        else: path = 'index_sv'
+
+        return jsonify({
+            'status': 'success',
+            'type': loai,  # Trả về loai từ cơ sở dữ liệu
+            'redirect': path  # Chuyển hướng sau khi đăng nhập thành công
+        })
+    else:
+        return jsonify({
+            'status': 'fail',
+            'message': 'Sai ID hoặc mật khẩu'
+        })
 
 
 
@@ -153,8 +185,16 @@ def detect_face():
 
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def loginscr():
+    return render_template('login.html')
+
+@app.route('/index_gv')
+def index_gv():
+    return render_template('index_gv.html')
+
+@app.route('/index_sv')
+def index_sv():
+    return render_template('index_sv.html')
 
 
 @app.route('/video_feed')

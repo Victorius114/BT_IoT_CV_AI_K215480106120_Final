@@ -6,7 +6,7 @@ gitpython>=3.1.30
 matplotlib>=3.3
 numpy>=1.23.5
 opencv-python>=4.1.1
-pillow>=10.3.0
+pillow~=10.2.0
 psutil  # system resources
 PyYAML>=5.3.1
 requests>=2.32.2
@@ -51,7 +51,14 @@ setuptools>=70.0.0 # Snyk vulnerability fix
 mtcnn~=1.0.0
 
 #pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-tensorflow~=2.14.0
+tensorflow~=2.18.0
 keras~=2.10.0
 facenet~=1.0.5
 scikit-learn~=1.6.1
+pyodbc~=5.2.0
+mysql-connector-python~=9.2.0
+fonttools~=4.55.3
+sympy~=1.13.1
+paho-mqtt~=2.1.0
+Flask~=3.1.0
+channels~=4.2.0

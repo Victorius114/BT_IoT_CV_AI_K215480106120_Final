@@ -19,6 +19,7 @@ try:
     # 🔹 Truy vấn dữ liệu
     query_select = "SELECT * FROM Thoigian_tiet"
     cursor.execute(query_select)
+    conn.commit()
     rows = cursor.fetchall()
 
     print("📌 Dữ liệu trong bảng 'Thoigian_tiet':")
